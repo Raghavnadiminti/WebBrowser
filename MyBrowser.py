@@ -8,33 +8,55 @@ class InputBar(QWidget):
 
         super().__init__()
         self.Window1()
-    
+#//////////////////////////////////////////////   
     def Window1(self):
         self.setWindowTitle("MY Browser")
+#------------------------------------------------
         self.mainlayout=QVBoxLayout()
         self.layout=QHBoxLayout()
-        # self.resize(400, 200) 
+         
         self.layout2=QVBoxLayout()
-        self.button=QPushButton("enter")
-        
-        self.layout.addWidget(self.button)
+#------------------------------------------------
+        self.button=QPushButton("enter")       
         self.line_edit=QLineEdit()
         self.button.clicked.connect(self.getinput) 
+#---------------------------------------------------
         self.browser=QWebEngineView()
-        self.browser.setUrl(QUrl("https://www.google.com"))
-        self.layout.addWidget(self.line_edit)
-        self.layout.addStretch()
+        self.browser.setUrl(QUrl("https://www.google.com"))  
+        self.setStyleSheet("""
+            
+            QWebEngineView {
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                height:20000000px;
+            }
+        """)
+
+#----------------------------------------------------    
+        self.rightArrow=QPushButton(">")
+        self.leftArrow=QPushButton("<")
+        self.refresh=QPushButton("⟳")
+        self.rightArrow.clicked.connect(self.browser.forward)
+        self.leftArrow.clicked.connect(self.browser.back)
+        self.refresh.clicked.connect(self.browser.reload)
+#-------------------------------------------------------------
+        self.layout2.setSpacing(0)
+        self.layout2.setContentsMargins(0, 0, 0, 0)
         self.layout2.addWidget(self.browser)
+        self.layout.addWidget(self.leftArrow)
+        self.layout.addWidget(self.rightArrow)
+        self.layout.addWidget(self.refresh)
+        self.layout.addWidget(self.button)
+        self.layout.addWidget(self.line_edit)
+        # self.layout2.setStretch(0, 1)
        
-        self.layout2.addStretch()
+#---------------------------------------------------------------
         self.mainlayout.addLayout(self.layout)
         self.mainlayout.addLayout(self.layout2)
-        self.mainlayout.setStretch(0, 1)
-        self.mainlayout.setStretch(1, 10)
-        
+          
         self.setLayout(self.mainlayout)
-        self.showMaximized()
-        
+        # self.showMaximized()
+#////////////////////////////////////////////////////////////////////       
     def getinput(self):
         input=self.line_edit.text()
         if input:
