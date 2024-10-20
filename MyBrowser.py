@@ -5,9 +5,10 @@ from PyQt6.QtCore import *
 
 class InputBar(QWidget):
     def __init__(self):
-
+        
         super().__init__()
         self.Window1()
+        self.setGeometry(100, 1300, 400, 1000)
 #//////////////////////////////////////////////   
     def Window1(self):
         self.setWindowTitle("MY Browser")
@@ -24,13 +25,43 @@ class InputBar(QWidget):
         self.browser=QWebEngineView()
         self.browser.setUrl(QUrl("https://www.google.com"))  
         self.setStyleSheet("""
-            
-            QWebEngineView {
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                height:20000000px;
-            }
-        """)
+    QWidget {
+        background-color: white; 
+        color: black; 
+       
+    }
+    QPushButton {
+        background-color: #4CAF50; 
+        color: white; 
+        border: none; 
+        padding: 5px; 
+        border-radius: 5px; 
+        font-size: 10px; 
+    }
+    QPushButton:hover {
+        background-color: #45a049; 
+    }
+    QLineEdit {
+        background-color: #f0f0f0; 
+        color: black; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        padding: 5px; 
+        font-size: 14px; 
+    }
+    QLineEdit:focus {
+        border: 1px solid #4CAF50; 
+    }
+    QVBoxLayout{
+            height:100%;
+            width:100%;                      
+    }
+    QHBoxLayout{
+                           background-color:white;
+                           color:black;
+                           }
+""")
+
 
 #----------------------------------------------------    
         self.rightArrow=QPushButton(">")
@@ -59,6 +90,12 @@ class InputBar(QWidget):
 #////////////////////////////////////////////////////////////////////       
     def getinput(self):
         input=self.line_edit.text()
+        if not input.startswith("https://"):
+            url="https://" 
+            url+=input 
+            input=url
+        if not input.endswith(".com"):
+            input+=".com"
         if input:
             self.browser.setUrl(QUrl(input))
     
