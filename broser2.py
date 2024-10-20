@@ -88,7 +88,6 @@ class Implement(QWidget):
         self.present=Node()
         self.tab=Tabs()
         self.tab.add(self.present)
-
         self.Window()
     
     def Window(self):
@@ -106,9 +105,6 @@ class Implement(QWidget):
         self.btnLayout.addWidget(self.buttonnew)
         self.btnLayout.addWidget(self.buttonnext)
         self.btnLayout.addWidget(self.buttondel)
-
-
-
         self.layout.addLayout(self.btnLayout)
         self.layout.addWidget(self.present.data)
         self.setLayout(self.layout)
@@ -117,7 +113,6 @@ class Implement(QWidget):
     def add_Tab(self):
         k=Node()
         self.tab.add(k)
-
         print(k.data)
         self.layout.removeWidget(self.present.data)
         self.layout.addWidget(k.data)
@@ -137,6 +132,7 @@ class Implement(QWidget):
         self.present.data.setParent(None)
         self.layout.addWidget(k.data)
         self.present=k
+        
         print("nextlenght")
         print(self.tab.Get_length())
     def delete_Tab(self):
