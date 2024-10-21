@@ -38,14 +38,18 @@ class Tabs():
                 self.last.next = None
        
         else:
-            if node.prev:
-                node.prev.next = node.next
-            if node.next:
-                node.next.prev = node.prev
+            temp=self.head 
+            prev=temp
+            while temp!=node:
+                prev=temp 
+                temp=temp.next 
+            prev.next=temp.next 
+            temp.next.prev=prev 
+            temp=None 
+            
 
        
-        if self.present == node:
-            self.present = self.head if self.head else None
+        
     def get_last(self):
         return self.last
     def Get_length(self):
@@ -69,6 +73,12 @@ class Tabs():
             print("sucess")
         else:
             return node
+    def get(self,node):
+        if node.prev:
+            return node.prev 
+        if node.next:
+            return node.next 
+        return node
          
 
 class Implement(QWidget):
@@ -138,7 +148,7 @@ class Implement(QWidget):
     def delete_Tab(self):
         m=self.present 
         self.tab.remove(m)
-        k=self.tab.get_next(self.present)
+        k=self.tab.get(self.present)
         self.layout.removeWidget(self.present.data)
         self.present.data.setParent(None)
         self.layout.addWidget(k.data)
