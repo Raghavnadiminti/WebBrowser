@@ -79,14 +79,14 @@ class InputBar(QWidget):
         self.layout.addWidget(self.refresh)
         self.layout.addWidget(self.button)
         self.layout.addWidget(self.line_edit)
-        # self.layout2.setStretch(0, 1)
+       
        
 #---------------------------------------------------------------
         self.mainlayout.addLayout(self.layout)
         self.mainlayout.addLayout(self.layout2)
           
         self.setLayout(self.mainlayout)
-        # self.showMaximized()
+       
 #////////////////////////////////////////////////////////////////////       
     def getinput(self):
         input=self.line_edit.text()
